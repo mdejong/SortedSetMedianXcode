@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3C4CDFC122A18DF700604E76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CDFC022A18DF700604E76 /* main.m */; };
-		3C4CDFCE22A18ECC00604E76 /* Test.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CDFCD22A18ECC00604E76 /* Test.mm */; };
+		3C4CDFCE22A18ECC00604E76 /* TestMset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CDFCD22A18ECC00604E76 /* TestMset.mm */; };
+		3C7B077822A1AAA500F21F61 /* TestArr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B077722A1AAA500F21F61 /* TestArr.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,9 +28,11 @@
 		3C4CDFBD22A18DF700604E76 /* SortedSetMedianXcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SortedSetMedianXcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4CDFC022A18DF700604E76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3C4CDFCB22A18ECC00604E76 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C4CDFCD22A18ECC00604E76 /* Test.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test.mm; sourceTree = "<group>"; };
+		3C4CDFCD22A18ECC00604E76 /* TestMset.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMset.mm; sourceTree = "<group>"; };
 		3C4CDFCF22A18ECC00604E76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C4CDFD322A18F8600604E76 /* mset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mset.h; sourceTree = "<group>"; };
+		3C7B077722A1AAA500F21F61 /* TestArr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestArr.mm; sourceTree = "<group>"; };
+		3C95D2F122A1A50700E4DC5A /* arr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 			children = (
 				3C4CDFC022A18DF700604E76 /* main.m */,
 				3C4CDFD322A18F8600604E76 /* mset.h */,
+				3C95D2F122A1A50700E4DC5A /* arr.h */,
 			);
 			path = SortedSetMedianXcode;
 			sourceTree = "<group>";
@@ -80,7 +84,8 @@
 		3C4CDFCC22A18ECC00604E76 /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				3C4CDFCD22A18ECC00604E76 /* Test.mm */,
+				3C4CDFCD22A18ECC00604E76 /* TestMset.mm */,
+				3C7B077722A1AAA500F21F61 /* TestArr.mm */,
 				3C4CDFCF22A18ECC00604E76 /* Info.plist */,
 			);
 			path = Test;
@@ -181,7 +186,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4CDFCE22A18ECC00604E76 /* Test.mm in Sources */,
+				3C4CDFCE22A18ECC00604E76 /* TestMset.mm in Sources */,
+				3C7B077822A1AAA500F21F61 /* TestArr.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

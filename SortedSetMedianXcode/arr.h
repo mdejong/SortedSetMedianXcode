@@ -1,20 +1,18 @@
 //
-//  mset.h
+//  marr.h
 //  SortedSetMedianXcode
 //
 //  Created by Mo DeJong on 5/31/19.
 //  Copyright © 2019 HelpURock. All rights reserved.
 //
-//  Impl of programming challenge with C++ multiset.
-//  This logic handles insert and delete but iteration
-//  over all the elements in the window results in slow
-//  runtime since every value depends on looping over
-//  every element in the container.
+//  Impl using sorted array for log(n) insert/delete
+//  operations. This results in the ability to lookup
+//  the middle elements in the sorted window without
+//  having to iterate over 1/2 the window elements
+//  to find the median.
 
-#ifndef mset_h
-#define mset_h
-
-//#include <bits/stdc++.h>
+#ifndef arr_h
+#define arr_h
 
 #include <vector>
 #include <string>
@@ -26,37 +24,26 @@ using namespace std;
 static
 vector<string> split_string(string);
 
-// Determine median value given a set of int values
+// Determine median value given a set of int values.
+// Note that this method is O(1) since array access
+// operations depend only on the container size and
+// then direct access into the array.
+//
 // 1. Even # elems, return ave of middle values
 // 2. Odd # elems, return middle value
 
 static inline
-float median(const std::multiset<int> & values) {
+float median(const vector<int> & values) {
   int halfi = (int) values.size() / 2;
-  int isEven = (int) ((values.size() % 2) == 0);
   
-  if (isEven) {
+  if ((values.size() % 2) == 0) {
     // even
-    //auto it = values.begin() + halfi - 1;
-    auto it = values.begin();
-    
-    // For a container of size N, this iterator
-    // will have to touch N/2 elements.
-
-    for (int i = 0; i < (halfi - 1); i++) {
-      it++;
-    }
-    int v1 = *it++;
-    int v2 = *it;
-    return (v1 + v2) / 2.0f;
+    int v1 = values[halfi - 1];
+    int v2 = values[halfi];
+    return (v1 + v2) / 2.0;
   } else {
     // odd
-    //auto it = values.begin() + halfi;
-    auto it = values.begin();
-    for (int i = 0; i < halfi; i++) {
-      it++;
-    }
-    return float(*it);
+    return float(values[halfi]);
   }
 }
 
@@ -71,17 +58,18 @@ int activityNotifications(vector<int> expenditure, int d) {
   // Init multiset which contains a balanced tree of int values,
   // note that duplicates can exist so use multiset instead of set.
   
-  std::multiset<int> window;
+  std::vector<int> window;
   int windowRemoveIndex = 0;
   int windowInsertIndex = d;
   
   for ( int i = 0; i < d; i++ ) {
     int v = expenditure[i];
-    window.insert(v);
+    window.push_back(v);
   }
 #if defined(DEBUG)
   assert(window.size() == d);
 #endif // DEBUG
+  sort(window.begin(), window.end());
   
   // window of values configured, grab today value,
   // run calculation logic, then update sorted set.
@@ -104,7 +92,7 @@ int activityNotifications(vector<int> expenditure, int d) {
     // over this window as indicated by the mean
     
     float dMedian = 2 * median(window);
-
+    
     if (float(expenditureToday) >= dMedian) {
       numNotifications += 1;
     }
@@ -113,12 +101,23 @@ int activityNotifications(vector<int> expenditure, int d) {
     
     int expenditureToRemove = expenditure[windowRemoveIndex];
     
-    // FIXME: if expenditureToRemove == expenditureToday then nop
-    // Erase(v) can erase multiple matches! Use iterator erase instead
-    //window.erase(expenditureToRemove);
-    auto firstMatch = window.find(expenditureToRemove);
-    window.erase(firstMatch);
-    window.insert(expenditureToday);
+    // Remove expenditureToRemove with log(N) time
+    
+    {
+      auto firstMatch = lower_bound(window.begin(), window.end(), expenditureToRemove);
+      window.erase(firstMatch);
+
+#if defined(DEBUG)
+      assert(window.size() == d-1);
+#endif // DEBUG
+    }
+    
+    // Insert expenditureToday with log(N) time
+    
+    {
+      auto it = upper_bound(window.begin(), window.end(), expenditureToday);
+      window.insert(it, expenditureToday);
+    }
 #if defined(DEBUG)
     assert(window.size() == d);
 #endif // DEBUG
@@ -133,7 +132,7 @@ int activityNotifications(vector<int> expenditure, int d) {
 // Execute main logic using input inStr and returning the output
 
 static inline
-string mset_main(const string & inStr)
+string arr_main(const string & inStr)
 {
   istringstream inStream;
   inStream.str(inStr);
@@ -198,4 +197,4 @@ vector<string> split_string(string input_string) {
   return splits;
 }
 
-#endif /* mset_h */
+#endif /* arr_h */

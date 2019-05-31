@@ -1,21 +1,17 @@
 //
-//  Test.mm
-
-//  Test
+//  TestMset.mm
 //
-//  Created by Mo DeJong on 5/31/19.
-//  Copyright © 2019 HelpURock. All rights reserved.
-//
+//  multiset impl
 
 #import <XCTest/XCTest.h>
 
 #import "mset.h"
 
-@interface Test : XCTestCase
+@interface TestMset : XCTestCase
 
 @end
 
-@implementation Test
+@implementation TestMset
 
 - (void)setUp {
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -67,6 +63,18 @@
   XCTAssert(match, @"!expected");
 }
 
+// Huge input with a large window and a large input dataset.
+
+- (void)testMsetHuge1 {
+  string inStr = [self inputTestHugeDataset1];
+  
+  string expectedStr = "633" "\n";
+  
+  string result = mset_main(inStr);
+  
+  int match = (result == expectedStr);
+  XCTAssert(match, @"!expected");
+}
 
 - (void)testMsetIter1Performance {
     // This is an example of a performance test case.
@@ -91,20 +99,6 @@
   
   return inStr;
 }
-
-// Huge input with a large window and a large input dataset.
-
-- (void)testMsetHuge1 {
-  string inStr = [self inputTestHugeDataset1];
-  
-  string expectedStr = "633" "\n";
-  
-  string result = mset_main(inStr);
-  
-  int match = (result == expectedStr);
-  XCTAssert(match, @"!expected");
-}
-
 
 - (void)testMsetHuge1Performance {
   // This is an example of a performance test case.
