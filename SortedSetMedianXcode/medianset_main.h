@@ -94,7 +94,9 @@ int activityNotifications(vector<int> expenditure, int d) {
       cout << "expenditureToday " << expenditureToday << endl;
       int medianInd = (int) window.medianDistance();
       cout << "median " << window.medianVal() << " is at offset " << medianInd << endl;
-      
+    }
+
+    if (0) {
       cout << "window ";
       for ( auto it = window.begin(); it != window.end(); it++ ) {
         cout << *it << " ";

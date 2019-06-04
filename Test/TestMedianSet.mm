@@ -107,7 +107,7 @@
   
   XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
   
-  mset.remove(3);
+  mset.remove(2);
   
   XCTAssert(mset.size() == 2, @"size != 2 : %d", (int)mset.size());
   
@@ -220,6 +220,31 @@
   int medianVal = mset.medianVal();
   XCTAssert(medianVal == 2, @"medianVal != 2 : %d", medianVal);
 }
+
+- (void)testSizeTwoEvenRemoveEQ {
+  // Operate on set of values, remove op
+  // [2 2] -> [2]
+  //  ^        ^
+  
+  medianset<int> mset;
+  
+  mset.insert(2);
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 2, @"size != 4 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 0, @"medianDistance != 0 : %d", (int)mset.medianDistance());
+  
+  mset.remove(2);
+  
+  XCTAssert(mset.size() == 1, @"size != 3 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 0, @"medianDistance != 0 : %d", (int)mset.medianDistance());
+  
+  int medianVal = mset.medianVal();
+  XCTAssert(medianVal == 2, @"medianVal != 2 : %d", medianVal);
+}
+
 
 // Insert with even number of values
 
@@ -371,6 +396,32 @@
   
   XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
 }
+
+- (void)testSizeOddInsertEQ2 {
+  // [2 2 2] -> [2 2 2 2]
+  //    ^          ^
+  
+  medianset<int> mset;
+  
+  mset.insert(2);
+  mset.insert(2);
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 3, @"size != 3 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+  
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 4, @"size != 4 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+}
+
 
 - (void)testSizeOddPair {
   // [1 2 3] returns [2 2]

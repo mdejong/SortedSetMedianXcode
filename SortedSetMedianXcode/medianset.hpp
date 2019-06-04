@@ -87,15 +87,25 @@ public:
     
     size_t s = size();
     
-    auto removeIter = values.find(val);
-    
     if (s == 0) {
-      return;
-    } else if (removeIter == values.end()) {
       return;
     }
     
     T medianVal = *median;
+    typename multiset<T>::iterator removeIter;
+    
+    {
+      if (val == medianVal) {
+        // Avoid logn search when deleting median value
+        removeIter = median;
+      } else {
+        removeIter = values.find(val);
+        
+        if (removeIter == values.end()) {
+          return;
+        }
+      }
+    }
     
     if ((s & 0x1) == 0) {
       // size is even
@@ -121,6 +131,10 @@ public:
 #if defined(DEBUG)
     assert(size() == (s-1));
 #endif // DEBUG
+    
+    if (removeIter == median) {
+      median--;
+    }
   }
   
   // Determine the "offset" of the median ref if all the values were
