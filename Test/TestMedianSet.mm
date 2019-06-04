@@ -92,7 +92,7 @@
   XCTAssert(medianVal == 1, @"medianVal != 1 : %d", medianVal);
 }
 
-- (void)testSizeOddRemoveEQ {
+- (void)testSizeOddRemoveEQ1 {
   // Operate on set of 3 values, remove op
   // [1 2 3] -> [1 3]
   //    ^        ^
@@ -115,6 +115,31 @@
   
   int medianVal = mset.medianVal();
   XCTAssert(medianVal == 1, @"medianVal != 1 : %d", medianVal);
+}
+
+- (void)testSizeOddRemoveEQ2 {
+  // [2 3 3 4 6] -> [2 3 4 6]
+  //      ^            ^
+  
+  medianset<int> mset;
+  
+  mset.insert(2);
+  mset.insert(3);
+  mset.insert(3);
+  mset.insert(4);
+  mset.insert(6);
+  
+  XCTAssert(mset.size() == 5, @"size != 5 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 2, @"medianDistance != 2 : %d", (int)mset.medianDistance());
+  
+  mset.remove(3);
+  
+  XCTAssert(mset.size() == 4, @"size != 4 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 3, @"medianVal != 3 : %d", mset.medianVal());
 }
 
 // 4 element even remove case
@@ -296,7 +321,7 @@
   XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
 }
 
-- (void)testSizeEvenInsertEQ {
+- (void)testSizeEvenInsertEQ1 {
   // [1 2] -> [1 1 2]
   //  ^          ^
   

@@ -133,14 +133,15 @@ public:
       }
     }
     
+    if (removeIter == median) {
+      // Move median iterator back 1 before erase
+      median--;
+    }
+    
     values.erase(removeIter);
 #if defined(DEBUG)
     assert(size() == (s-1));
 #endif // DEBUG
-    
-    if (removeIter == median) {
-      median--;
-    }
     
 #if defined(DEBUG)
     validateMedian();
