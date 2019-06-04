@@ -320,6 +320,30 @@
   XCTAssert(mset.medianVal() == 1, @"medianVal != 1 : %d", mset.medianVal());
 }
 
+- (void)testSizeEvenInsertEQ2 {
+  // [2 2] -> [2 2 2]
+  //  ^          ^
+  
+  medianset<int> mset;
+  
+  mset.insert(2);
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 2, @"size != 4 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 0, @"medianDistance != 0 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+  
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 3, @"size != 3 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+}
+
 // Insert with an odd number of elements
 
 - (void)testSizeOddInsertLT {
