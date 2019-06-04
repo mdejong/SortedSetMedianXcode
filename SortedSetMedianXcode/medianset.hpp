@@ -172,7 +172,7 @@ public:
       return;
     }
     
-    int dm = medianDistance();
+    int dm = (int) medianDistance();
 
     if ((s % 2) == 0) {
       // even
