@@ -5,7 +5,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "msedianset.hpp"
+#import "medianset.hpp"
 
 @interface TestMedianSet : XCTestCase
 

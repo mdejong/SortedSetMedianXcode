@@ -10,6 +10,7 @@
 		3C4CDFC122A18DF700604E76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CDFC022A18DF700604E76 /* main.m */; };
 		3C4CDFCE22A18ECC00604E76 /* TestMset.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C4CDFCD22A18ECC00604E76 /* TestMset.mm */; };
 		3C7B077822A1AAA500F21F61 /* TestArr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B077722A1AAA500F21F61 /* TestArr.mm */; };
+		3CB85E1822A5E461000C734C /* TestMedianSet.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3CB85E1722A5E461000C734C /* TestMedianSet.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,9 @@
 		3C4CDFD322A18F8600604E76 /* mset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mset.h; sourceTree = "<group>"; };
 		3C7B077722A1AAA500F21F61 /* TestArr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestArr.mm; sourceTree = "<group>"; };
 		3C95D2F122A1A50700E4DC5A /* arr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = arr.h; sourceTree = "<group>"; };
+		3CB85E1622A5E313000C734C /* medianset.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = medianset.hpp; sourceTree = "<group>"; };
+		3CB85E1722A5E461000C734C /* TestMedianSet.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMedianSet.mm; sourceTree = "<group>"; };
+		3CB85E1922A604D0000C734C /* medianset_main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = medianset_main.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 				3C4CDFC022A18DF700604E76 /* main.m */,
 				3C4CDFD322A18F8600604E76 /* mset.h */,
 				3C95D2F122A1A50700E4DC5A /* arr.h */,
+				3CB85E1622A5E313000C734C /* medianset.hpp */,
+				3CB85E1922A604D0000C734C /* medianset_main.h */,
 			);
 			path = SortedSetMedianXcode;
 			sourceTree = "<group>";
@@ -84,6 +90,7 @@
 		3C4CDFCC22A18ECC00604E76 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				3CB85E1722A5E461000C734C /* TestMedianSet.mm */,
 				3C4CDFCD22A18ECC00604E76 /* TestMset.mm */,
 				3C7B077722A1AAA500F21F61 /* TestArr.mm */,
 				3C4CDFCF22A18ECC00604E76 /* Info.plist */,
@@ -186,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CB85E1822A5E461000C734C /* TestMedianSet.mm in Sources */,
 				3C4CDFCE22A18ECC00604E76 /* TestMset.mm in Sources */,
 				3C7B077822A1AAA500F21F61 /* TestArr.mm in Sources */,
 			);
