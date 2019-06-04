@@ -90,7 +90,7 @@ int activityNotifications(vector<int> expenditure, int d) {
      cout << endl;
      */
 
-    if (1) {
+    if (0) {
       cout << "expenditureToday " << expenditureToday << endl;
       int medianInd = (int) window.medianDistance();
       cout << "median " << window.medianVal() << " is at offset " << medianInd << endl;
@@ -128,7 +128,7 @@ int activityNotifications(vector<int> expenditure, int d) {
       int medianInd = (int) window.medianDistance();
 #endif // DEBUG
       
-      cout << "expenditureToRemove " << expenditureToRemove << endl;
+      //cout << "expenditureToRemove " << expenditureToRemove << endl;
       
       window.remove(expenditureToRemove);
       window.insert(expenditureToday);

@@ -49,7 +49,7 @@ public:
     
     T medianVal = *median;
     
-    bool isPostShift = false;
+    int shiftAfter = 0;
     
     if ((s & 0x1) == 0) {
       // size is even
@@ -58,14 +58,14 @@ public:
         // value is to the left of median, nop
       } else {
         // if val is equal to or larger than median, shift right
-        isPostShift = true;
+        shiftAfter += 1;
       }
     } else {
       // size is odd
       
       if (val < medianVal) {
         // value is to the left, shift left
-        median--;
+        shiftAfter -= 1;
       } else {
         // if val is larger or equal to median, nop
       }
@@ -75,10 +75,16 @@ public:
 #if defined(DEBUG)
     assert(size() == (s+1));
 #endif // DEBUG
-    
-    if (isPostShift) {
+
+    if (shiftAfter == -1) {
+      median--;
+    } else if (shiftAfter == 1) {
       median++;
     }
+    
+#if defined(DEBUG)
+    validateMedian();
+#endif // DEBUG
   }
   
   void remove(T val) {
@@ -135,6 +141,10 @@ public:
     if (removeIter == median) {
       median--;
     }
+    
+#if defined(DEBUG)
+    validateMedian();
+#endif // DEBUG
   }
   
   // Determine the "offset" of the median ref if all the values were
@@ -150,6 +160,28 @@ public:
     
     return distance(values.begin(), median);
   }
+
+#if defined(DEBUG)
+  // Debug method to validate that the median iterator is referencing
+  // the correct element in the set.
+  
+  void validateMedian() const {
+    int s = (int) size();
+    if (s == 0) {
+      return;
+    }
+    
+    int dm = medianDistance();
+
+    if ((s % 2) == 0) {
+      // even
+      assert(dm == ((s / 2)-1));
+    } else {
+      // odd
+      assert(dm == (s / 2));
+    }
+  }
+#endif // DEBUG
 
   // Quickly return the median value in the sorted set of values.
   // Note that this method invocation is invalid when size() is zero.

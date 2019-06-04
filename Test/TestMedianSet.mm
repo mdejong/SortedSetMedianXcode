@@ -346,7 +346,7 @@
 
 // Insert with an odd number of elements
 
-- (void)testSizeOddInsertLT {
+- (void)testSizeOddInsertLT1 {
   // [2 3 4] -> [1 2 3 4]
   //    ^          ^
   
@@ -369,6 +369,31 @@
   XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
   
   XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+}
+
+- (void)testSizeOddInsertLT2 {
+  // [0 3 4] -> [0 1 3 4]
+  //    ^          ^
+  
+  medianset<int> mset;
+  
+  mset.insert(0);
+  mset.insert(3);
+  mset.insert(4);
+  
+  XCTAssert(mset.size() == 3, @"size != 3 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 3, @"medianVal != 3 : %d", mset.medianVal());
+  
+  mset.insert(1);
+  
+  XCTAssert(mset.size() == 4, @"size != 4 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 1, @"medianDistance != 1 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 1, @"medianVal != 2 : %d", mset.medianVal());
 }
 
 - (void)testSizeOddInsertGT {
@@ -446,6 +471,38 @@
   XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
 }
 
+// In this test case, the median value has identical values to the left
+// and to the right. An insert could be placed to the right of 1, in the
+// middle, or before the value 3.
+
+- (void)testSizeOddInsertBothEndsOFMedian {
+  // [0 1 2 2 2 3 4] -> [0 1 2 2 2 2 3 4]
+  //        ^                  ^
+  
+  medianset<int> mset;
+
+  mset.insert(0);
+  mset.insert(1);
+  mset.insert(2);
+  mset.insert(2);
+  mset.insert(2);
+  mset.insert(3);
+  mset.insert(4);
+  
+  XCTAssert(mset.size() == 7, @"size != 7 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 3, @"medianDistance != 3 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+  
+  mset.insert(2);
+  
+  XCTAssert(mset.size() == 8, @"size != 8 : %d", (int)mset.size());
+  
+  XCTAssert(mset.medianDistance() == 3, @"medianDistance != 3 : %d", (int)mset.medianDistance());
+  
+  XCTAssert(mset.medianVal() == 2, @"medianVal != 2 : %d", mset.medianVal());
+}
 
 - (void)testSizeOddPair {
   // [1 2 3] returns [2 2]
